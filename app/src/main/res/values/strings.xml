@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">fooddeliveryapp</string>
+    <string name="app_title"> food delivery</string>
+    <string name="mainactivity_text">The fastest in Delivery Food.</string>
+    <string name="mainactivity_texttwo">Our job is to fill your tummy with delicious food and fast delivery.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="cart">Hello this is the cart fragment.</string>
+    <string name="home">Hello this is the home fragment.</string>
+    <string name="search">Hello this is the search fragment.</string>
+    <string name="favorite">Hello this is the favorite fragment.</string>
+    <string name="notification">Hello this is the notification fragment.</string>
+    <string name="search_hint">search</string>
+</resources>

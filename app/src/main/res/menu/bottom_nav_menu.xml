@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+    android:id="@+id/cartId"
+    android:title="cart"
+    android:icon="@drawable/cart_foreground"/>
+    <item
+        android:id="@+id/homeId"
+        android:title="home"
+        android:icon="@drawable/home_foreground"/>
+    <item
+        android:id="@+id/searchId"
+        android:title="search"
+        android:icon="@drawable/search_foreground"/>
+    <item
+        android:id="@+id/favouriteId"
+        android:title="like"
+        android:icon="@drawable/like_foreground"/>
+    <item
+        android:id="@+id/notificationId"
+        android:title="notify"
+        android:icon="@drawable/notification_foreground"/>
+</menu>

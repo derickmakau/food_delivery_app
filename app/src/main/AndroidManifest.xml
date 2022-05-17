@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<searchable xmlns:android="http://schemas.android.com/apk/res/android"
+    android:hint="search_hint"
+    android:label="@string/app_name" />-->
+<!--<searchable xmlns:android="http://schemas.android.com/apk/res/android"
+android:hint="@string/hint_search"
+android:label="@string/app_name"
+android:voiceSearchMode="showVoiceSearchButton|launchRecognizer"
+android:searchSuggestAuthority="ngvl.android.demosearch.citysuggestion"
+android:searchSuggestIntentAction="android.intent.action.VIEW"
+android:searchSuggestIntentData="content://ngvl.android.demosearch.city"/>-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.fooddeliveryapp">
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/lunchsix"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/lunchsix"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Fooddeliveryapp">
+        <activity android:name=".login"/>
+        <activity android:name=".registerScreen" />
+        <activity android:name=".selected" />
+        <activity android:name=".display" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

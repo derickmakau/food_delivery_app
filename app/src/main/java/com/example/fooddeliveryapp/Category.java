@@ -10,15 +10,19 @@ public class Category {
         this.foods=foods;
     }
     public String getNameCategory(){
+
         return nameCategory;
     }
     public void setNameCategory(String nameCategory){
+
         this.nameCategory=nameCategory;
     }
     public List<Food> getFoods(){
+
         return foods;
     }
     public void setFoods(List<Food> foods){
+
         this.foods= foods;
     }
 }

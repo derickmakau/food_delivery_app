@@ -1,5 +1,7 @@
 package com.example.fooddeliveryapp;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,10 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -25,6 +31,7 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class home extends Fragment {
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -66,7 +73,6 @@ public class home extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -79,17 +85,6 @@ public class home extends Fragment {
         rcvCategory.setLayoutManager(linearLayoutManager);
         categoryAdapter.setData(getListCategory());
         rcvCategory.setAdapter(categoryAdapter);
-        rcvCategory.addOnItemTouchListener(new  RecyclerItemClickListener(getContext(),rcvCategory, new RecyclerItemClickListener.OnItemClickListener(){
-@Override
-            public void onItemClick(View view, int position){
-    Toast.makeText(getContext(),"done... click", Toast.LENGTH_SHORT).show();
-    //do whatever;
-}
-public void onLongItemClick(View view, int position){
-    Toast.makeText(getContext(),"wow... long click",Toast.LENGTH_SHORT).show();
-
-}
-        }));
         return view;
     }
     @Override
@@ -99,19 +94,41 @@ public void onLongItemClick(View view, int position){
     private List<Category> getListCategory(){
         List<Category> listCategory=new ArrayList<Category>();
         List<Food> listFood=new ArrayList<Food>();
-        listFood.add(new Food(R.drawable.beverageone,"lemon water"));
-        listFood.add(new Food(R.drawable.beveragetwo,"red wine"));
-        listFood.add(new Food(R.drawable.beveragethree,"german coffee"));
-        listFood.add(new Food(R.drawable.breakfastone,"tea"));
-        listFood.add(new Food(R.drawable.breakfasttwo,"lemon tea"));
-        listFood.add(new Food(R.drawable.breakfastthree,"japan drink"));
-        listFood.add(new Food(R.drawable.breakfastfour,"toast"));
-        listFood.add(new Food(R.drawable.lunchone,"half burger"));
+        listFood.add(new Food(R.drawable.bvg1,"bvg1",false));
+        listFood.add(new Food(R.drawable.bvg2,"bvg2",false));
+        listFood.add(new Food(R.drawable.bvg3,"bvg3",false));
+        listFood.add(new Food(R.drawable.bvg4,"bvg4",false));
+        listFood.add(new Food(R.drawable.bvg5,"bvg5",false));
+        listFood.add(new Food(R.drawable.bvg6,"bvg6",false));
+        listFood.add(new Food(R.drawable.bvg7,"bvg7",false));
+        listFood.add(new Food(R.drawable.bvg8,"bvg8",false));
+        List<Food> listFoodTwo= new ArrayList<Food>();
+        listFoodTwo.add(new Food(R.drawable.frts1,"frts1",false));
+        listFoodTwo.add(new Food(R.drawable.frts2,"frts2",false));
+        listFoodTwo.add(new Food(R.drawable.frts3,"frts3",false));
+        listFoodTwo.add(new Food(R.drawable.frts4,"frts4",false));
+        listFoodTwo.add(new Food(R.drawable.frts5,"frts5",false));
+        listFoodTwo.add(new Food(R.drawable.frts6,"frts6",false));
+        List<Food> listFoodThree= new ArrayList<Food>();
+        listFoodThree.add(new Food(R.drawable.lnch1,"lnch1",false));
+        listFoodThree.add(new Food(R.drawable.lnch2,"lnch2",false));
+        listFoodThree.add(new Food(R.drawable.lnch3,"lnch3",false));
+        listFoodThree.add(new Food(R.drawable.lnch4,"lnch4",false));
+        listFoodThree.add(new Food(R.drawable.lnch5,"lnch5",false));
+        listFoodThree.add(new Food(R.drawable.lunchsix,"lnch6",false));
+        listFoodThree.add(new Food(R.drawable.lnch7,"lnch7",false));
+        List<Food> listFoodFour= new ArrayList<Food>();
+        listFoodFour.add(new Food(R.drawable.sf1,"sf1",false));
+        listFoodFour.add(new Food(R.drawable.sf2,"sf2",false));
+        listFoodFour.add(new Food(R.drawable.sf3,"sf3",false));
+       listFoodFour.add(new Food(R.drawable.sf4,"sf4",false));
+       listFoodFour.add(new Food(R.drawable.sf5,"sf5",false));
+        listFoodFour.add(new Food(R.drawable.sf6,"sf6",false));
 
-        listCategory.add(new Category("our breakfast",listFood));
-        listCategory.add(new Category("lunch",listFood));
-        listCategory.add(new Category("beverages",listFood));
-        listCategory.add(new Category("dinner",listFood));
+        listCategory.add(new Category("beverage",listFood));
+        listCategory.add(new Category("fruits",listFoodTwo));
+        listCategory.add(new Category("lunch",listFoodThree));
+        listCategory.add(new Category("seafood",listFoodFour));
         return listCategory;
     }
 

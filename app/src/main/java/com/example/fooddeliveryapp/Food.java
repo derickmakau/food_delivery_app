@@ -3,9 +3,11 @@ package com.example.fooddeliveryapp;
 public class Food {
     private int resourceId;
     private String title;
-    public Food(int resourceId, String title){
+     boolean isVisible;
+    public Food(int resourceId, String title,boolean isVisible){
         this.resourceId=resourceId;
-        this.title=title;
+        this.title= title;
+        this.isVisible= isVisible;
     }
     public int getResourceId(){
         return resourceId;

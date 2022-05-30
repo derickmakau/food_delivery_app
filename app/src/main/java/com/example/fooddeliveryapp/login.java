@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,7 +39,6 @@ private TextView register, recoverPassword;
                 loginUser();
             }
         });
-       /* https://www.youtube.com/watch?v=Z-RE1QuUWPg*/
         register.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -57,6 +57,20 @@ private TextView register, recoverPassword;
     private void loginUser(){
         String emailOne= email.getText().toString().trim();
         String passwordOne=password.getText().toString().trim();
+        if(emailOne.isEmpty()){
+            email.setError("your email is required!");
+            email.requestFocus();
+            return;
+        }
+        if(!Patterns.EMAIL_ADDRESS.matcher(emailOne).matches()){
+            email.setError("please provide valid email!");
+            email.requestFocus();}
+        if(passwordOne.isEmpty()){
+            password.setError("your password is required!");
+            password.requestFocus();
+            return;
+
+        }
         mAuth.signInWithEmailAndPassword(emailOne, passwordOne).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {

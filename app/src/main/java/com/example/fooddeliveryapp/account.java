@@ -1,12 +1,29 @@
 package com.example.fooddeliveryapp;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.ImageDecoder;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.io.IOException;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,7 +31,8 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class account extends Fragment {
-
+    private int REQUEST_PICK_IMAGE=1000;
+    CircleImageView imageOne;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -59,6 +77,77 @@ public class account extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_account, container, false);
+        View view=inflater.inflate(R.layout.fragment_account, container, false);
+        imageOne=(CircleImageView) view.findViewById(R.id.accountImage);
+        imageOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+if(ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+    requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},2000);
+}
+else{
+    startGallery();
+}
+            }
+
+            private void startGallery() {
+                Intent cameraIntent= new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                cameraIntent.setType("image/*");
+                if(cameraIntent.resolveActivity(getActivity().getPackageManager())!=null){
+                    startActivityForResult(cameraIntent, 1000);
+                }
+            }
+           /* @Override
+            public void onActivityResult(int requestCode, int resultCode, Intent data) {
+                //super.onActivityResult(requestCode, resultCode, data);
+                //super method removed
+                if(resultCode == RESULT_OK) {
+                    if(requestCode == 1000){
+                        Uri returnUri = data.getData();
+                        Bitmap bitmapImage = null;
+                        try {
+                            bitmapImage = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), returnUri);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        imageOne.setImageBitmap(bitmapImage);
+                    }
+                }}*/
+
+          /*  private void onPickImage() {
+                Intent intent= new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(intent,REQUEST_PICK_IMAGE);
+            }
+            //@Override
+            protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+               // super.onActivityResult(requestCode, resultCode, data);
+                if(resultCode== RESULT_OK){
+                    if(requestCode== REQUEST_PICK_IMAGE){
+                        Uri uri= data.getData();
+                        Bitmap bitmap= loadFromUri(uri);
+                        imageOne.setImageBitmap(bitmap);
+
+                    }
+                }
+            }
+            private Bitmap loadFromUri(Uri uri){
+                Bitmap bitmap= null;
+                try{
+                    if(Build.VERSION.SDK_INT > Build.VERSION_CODES.O_MR1){
+                        ImageDecoder.Source source = ImageDecoder.createSource(getActivity().getContentResolver(),uri);
+                        bitmap= ImageDecoder.decodeBitmap(source);
+                    }
+                    else{
+                        bitmap= MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),uri);
+                    }
+                }
+                catch(IOException e){
+                    e.printStackTrace();
+                }
+                return bitmap;
+            }*/
+        });
+        return view;
     }
 }

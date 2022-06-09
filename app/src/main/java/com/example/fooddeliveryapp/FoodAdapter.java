@@ -1,7 +1,14 @@
 package com.example.fooddeliveryapp;
 
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +27,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -30,8 +39,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     public List<Food> sFood;
     public List<Food> sFoodAll;
     public Context context;
-
-
+    DatabaseHelper myDb;
     public void setData(List<Food> list){
         this.sFood=list;
         this.sFoodAll= list;
@@ -53,7 +61,7 @@ if(food==null){
 }
 holder.imgFood.setImageResource(food.getResourceId());
 holder.tvTitle.setText(food.getTitle());
-holder.  linearLayoutOne.setOnClickListener(new View.OnClickListener(){
+/*holder.  linearLayoutOne.setOnClickListener(new View.OnClickListener(){
     @Override
     public void onClick(View view){
         Log.d("success","added to cart");
@@ -64,7 +72,7 @@ holder.  linearLayoutOne.setOnClickListener(new View.OnClickListener(){
         fragmentTransaction.replace(R.id.main_container,newCartFragment);
         fragmentTransaction.commit();
     }
-});
+});*/
     }
 
     @Override
@@ -81,6 +89,7 @@ holder.  linearLayoutOne.setOnClickListener(new View.OnClickListener(){
         private CardView cardViewOne;
         public FoodViewHolder(@NonNull View itemView){
             super(itemView);
+            myDb= new DatabaseHelper(context);
             imgFood=itemView.findViewById(R.id.img_food);
             tvTitle=itemView.findViewById(R.id.tv_title);
             linearLayoutOne=itemView.findViewById(R.id.hideCartId);
@@ -92,6 +101,26 @@ holder.  linearLayoutOne.setOnClickListener(new View.OnClickListener(){
                    Log.d("success","added to favourites");
                    Toast.makeText(view.getContext(),"added to Favourites",Toast.LENGTH_SHORT).show();
                }
+            });
+            linearLayoutOne.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view){
+                    Log.d("success","added to cart");
+                    Toast.makeText(view.getContext(),"added to cart",Toast.LENGTH_SHORT).show();
+                    //(String image,String name,String date,String price)try{}catch{}
+                  //  myDb.insertData(tvTitle.getText().toString());
+                       /* String stringFilePath= Environment.getExternalStorageDirectory().getPath()+"/Download/"+tvTitle.getText().toString()+".jpeg";
+                        Bitmap bitmap= BitmapFactory.decodeFile(stringFilePath);
+                        ByteArrayOutputStream byteArrayOutputStream= new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.PNG,0,byteArrayOutputStream);
+                        byte[] bytesImage= byteArrayOutputStream.toByteArray();*/
+                  //  Bundle bundle=getArguments();
+                    cart newCartFragment= new cart();
+                    FragmentManager fragmentManager= ((AppCompatActivity)context).getSupportFragmentManager();//((AppCompatActivity)context)
+                    FragmentTransaction fragmentTransaction= fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.main_container,newCartFragment);
+                    fragmentTransaction.commit();
+                }
             });
         }
     }

@@ -1,7 +1,11 @@
 package com.example.fooddeliveryapp;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -31,7 +35,9 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class home extends Fragment {
-
+LinearLayout linearLayoutTwo;
+private static final int NOTIFICATION_ID= 1;
+private NotificationManager mNotificationManager;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -89,6 +95,8 @@ public class home extends Fragment {
     }
     @Override
    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+      //  super.onViewCreated(view, savedInstanceState);
+
 
     }
     private List<Category> getListCategory(){

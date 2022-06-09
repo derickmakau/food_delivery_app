@@ -15,51 +15,116 @@
           android:id="@+id/imageViewForCart"
           android:layout_width="match_parent"
           android:layout_height="wrap_content">
+         <LinearLayout
+             android:orientation="vertical"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:id="@+id/imageViewForCart1">
       <ImageView
           android:src="@drawable/bvg1"
           android:layout_width="150dp"
           android:layout_height="150dp"/>
+          </LinearLayout>
+          <LinearLayout
+              android:layout_below="@+id/imageViewForCart1"
+              android:id="@+id/nameLinearLayout"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
           <TextView
               android:text="Name"
               android:textSize="18sp"
-              android:layout_width="match_parent"
+              android:layout_width="wrap_content"
               android:layout_height="wrap_content"/>
+              <EditText
+                  android:id="@+id/nameId"
+                  android:hint="item name"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"/>
+          </LinearLayout>
+          <LinearLayout
+              android:layout_below="@+id/nameLinearLayout"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
           <TextView
               android:text="price"
               android:textSize="18sp"
-              android:layout_width="match_parent"
+              android:layout_width="wrap_content"
               android:layout_height="wrap_content"/>
+          <EditText
+              android:id="@+id/priceId"
+              android:text=""
+              android:hint="20"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"/>
+          </LinearLayout>
       </LinearLayout>
 
           <LinearLayout
-              android:id="@+id/priceId"
+              android:id="@+id/TotalsId"
               android:orientation="vertical"
               android:layout_below="@+id/imageViewForCart"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal">
               <TextView
                   android:layout_width="wrap_content"
                   android:layout_height="match_parent"
                   android:text="Quantity"
                   android:textSize="24sp"
                   android:textStyle="bold"/>
+                  <EditText
+                      android:id="@+id/quantityId"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text=""
+                      android:hint="2"/>
+              </LinearLayout>
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal">
               <TextView
                   android:layout_width="wrap_content"
                   android:layout_height="match_parent"
                   android:text="VAT"
                   android:textSize="24sp"
                   android:textStyle="bold"/>
+                  <TextView
+                      android:id="@+id/vatId"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginLeft="20dp"
+                      android:textSize="24sp"
+                      android:text="value added tax"/>
+              </LinearLayout>
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal">
               <TextView
                   android:layout_width="wrap_content"
                   android:layout_height="match_parent"
                   android:text="TOTAL PRICE"
                   android:textSize="24sp"
                   android:textStyle="bold"/>
+                  <TextView
+                      android:id="@+id/totalsId"
+                      android:layout_marginLeft="20dp"
+                      android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:text="totals"
+                      android:textSize="24sp" />
+              </LinearLayout>
           </LinearLayout>
       <LinearLayout
           android:id="@+id/buyId"
           android:orientation="horizontal"
-          android:layout_below="@+id/priceId"
+          android:layout_below="@+id/TotalsId"
           android:layout_width="match_parent"
           android:layout_height="wrap_content">
           <Button
@@ -68,11 +133,13 @@
               android:layout_height="match_parent"/>
           <Button
               android:text="BUY LATER"
+              android:layout_marginLeft="150dp"
               android:layout_width="wrap_content"
               android:layout_height="match_parent"/>
       </LinearLayout>
       <Button
           android:layout_below="@+id/buyId"
+          android:layout_centerHorizontal="true"
           android:text="CANCEL"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"/>
